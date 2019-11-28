@@ -58,7 +58,7 @@ namespace IdentityServer3.Core.Configuration.Hosting
 
                 actionContext.Response = actionContext.Request.CreateResponse(
                     HttpStatusCode.UnsupportedMediaType, 
-                    new { ErrorMessage = localization.GetMessage(MessageIds.UnsupportedMediaType) }
+                    new { ErrorMessage = localization.GetMessage(Messages.UnsupportedMediaType) }
                 );
             }
         }

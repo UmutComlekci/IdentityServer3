@@ -20,6 +20,7 @@ using IdentityServer3.Core.Configuration;
 using IdentityServer3.Core.Extensions;
 using IdentityServer3.Host.Config;
 using Microsoft.IdentityModel.Protocols;
+using Microsoft.IdentityModel.Protocols.WsFederation;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
@@ -127,7 +128,8 @@ namespace Owin
 
             // workaround for https://katanaproject.codeplex.com/workitem/409
             var metadataAddress = "https://adfs.leastprivilege.vm/federationmetadata/2007-06/federationmetadata.xml";
-            var manager = new SyncConfigurationManager(new ConfigurationManager<WsFederationConfiguration>(metadataAddress));
+            var manager = new SyncConfigurationManager(new ConfigurationManager<WsFederationConfiguration>(metadataAddress,
+				new WsFederationConfigurationRetriever()));
 
             var adfs = new WsFederationAuthenticationOptions
             {

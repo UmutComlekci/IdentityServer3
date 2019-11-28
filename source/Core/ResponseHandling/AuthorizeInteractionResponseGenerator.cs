@@ -298,7 +298,7 @@ namespace IdentityServer3.Core.ResponseHandling
                             // they said yes, but didn't pick any scopes
                             // show consent again and provide error message
                             response.IsConsent = true;
-                            response.ConsentError = _localizationService.GetMessage(MessageIds.MustSelectAtLeastOnePermission);
+                            response.ConsentError = _localizationService.GetMessage(Messages.MustSelectAtLeastOnePermission);
                         }
                         else if (request.Client.AllowRememberConsent)
                         {

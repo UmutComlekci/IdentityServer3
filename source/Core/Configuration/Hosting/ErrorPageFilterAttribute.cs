@@ -40,7 +40,7 @@ namespace IdentityServer3.Core.Configuration.Hosting
                 RequestId = env.GetRequestId(),
                 SiteName = options.SiteName,
                 SiteUrl = env.GetIdentityServerBaseUrl(),
-                ErrorMessage = localization.GetMessage(MessageIds.UnexpectedError),
+                ErrorMessage = localization.GetMessage(Messages.UnexpectedError),
                 CurrentUser = env.GetCurrentUserDisplayName(),
                 LogoutUrl = env.GetIdentityServerLogoutUrl(),
             };

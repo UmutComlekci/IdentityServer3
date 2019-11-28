@@ -84,7 +84,7 @@ namespace IdentityServer3.Core.Endpoints
 
                 Logger.Error(error);
                 await RaiseFailureEventAsync(error);
-                return BadRequest(_localizationService.GetMessage(MessageIds.MissingToken));
+                return BadRequest(_localizationService.GetMessage(Messages.MissingToken));
             }
 
             var result = await _validator.ValidateAccessTokenAsync(token, parameters.Get("expectedScope"));

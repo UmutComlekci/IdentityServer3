@@ -84,7 +84,7 @@ namespace IdentityServer3.Core.Endpoints
                 Logger.Error(error);
                 await RaiseFailureEventAsync(error);
 
-                return BadRequest(_localizationService.GetMessage(MessageIds.MissingToken));
+                return BadRequest(_localizationService.GetMessage(Messages.MissingToken));
             }
 
             var clientId = parameters.Get("client_id");
@@ -94,7 +94,7 @@ namespace IdentityServer3.Core.Endpoints
                 Logger.Error(error);
                 await RaiseFailureEventAsync(error);
 
-                return BadRequest(_localizationService.GetMessage(MessageIds.MissingClientId));
+                return BadRequest(_localizationService.GetMessage(Messages.MissingClientId));
             }
 
             var result = await _validator.ValidateIdentityTokenAsync(token, clientId);

@@ -95,7 +95,7 @@ namespace IdentityServer3.Core.Endpoints
             if (model != null && String.IsNullOrWhiteSpace(model.ClientId))
             {
                 Logger.Warn("No model or client id submitted");
-                ModelState.AddModelError("ClientId", localizationService.GetMessage(MessageIds.ClientIdRequired));
+                ModelState.AddModelError("ClientId", localizationService.GetMessage(Messages.ClientIdRequired));
             }
 
             if (model == null || ModelState.IsValid == false)

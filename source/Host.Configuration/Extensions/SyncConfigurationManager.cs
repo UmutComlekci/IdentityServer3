@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Globalization;
+using Microsoft.IdentityModel.Protocols.WsFederation;
 
 namespace Host.Configuration.Extensions
 {

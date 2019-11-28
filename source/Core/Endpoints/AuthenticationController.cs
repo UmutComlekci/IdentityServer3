@@ -197,17 +197,17 @@ namespace IdentityServer3.Core.Endpoints
             if (model == null)
             {
                 Logger.Error("no data submitted");
-                return await RenderLoginPage(signInMessage, signin, localizationService.GetMessage(MessageIds.InvalidUsernameOrPassword));
+                return await RenderLoginPage(signInMessage, signin, localizationService.GetMessage(Messages.InvalidUsernameOrPassword));
             }
 
             if (String.IsNullOrWhiteSpace(model.Username))
             {
-                ModelState.AddModelError("Username", localizationService.GetMessage(MessageIds.UsernameRequired));
+                ModelState.AddModelError("Username", localizationService.GetMessage(Messages.UsernameRequired));
             }
             
             if (String.IsNullOrWhiteSpace(model.Password))
             {
-                ModelState.AddModelError("Password", localizationService.GetMessage(MessageIds.PasswordRequired));
+                ModelState.AddModelError("Password", localizationService.GetMessage(Messages.PasswordRequired));
             }
 
             model.RememberMe = options.AuthenticationOptions.CookieOptions.CalculateRememberMeFromUserInput(model.RememberMe);
@@ -238,7 +238,7 @@ namespace IdentityServer3.Core.Endpoints
             {
                 Logger.WarnFormat("user service indicated incorrect username or password for username: {0}", model.Username);
                 
-                var errorMessage = localizationService.GetMessage(MessageIds.InvalidUsernameOrPassword);
+                var errorMessage = localizationService.GetMessage(Messages.InvalidUsernameOrPassword);
                 await eventService.RaiseLocalLoginFailureEventAsync(model.Username, signin, signInMessage, errorMessage);
                 
                 return await RenderLoginPage(signInMessage, signin, errorMessage, model.Username, model.RememberMe == true);
@@ -271,7 +271,7 @@ namespace IdentityServer3.Core.Endpoints
             if (provider.IsMissing())
             {
                 Logger.Error("No provider passed");
-                return RenderErrorPage(localizationService.GetMessage(MessageIds.NoExternalProvider));
+                return RenderErrorPage(localizationService.GetMessage(Messages.NoExternalProvider));
             }
 
             if (provider.Length > options.InputLengthRestrictions.IdentityProvider)
@@ -342,7 +342,7 @@ namespace IdentityServer3.Core.Endpoints
 
                 Logger.ErrorFormat("External identity provider returned error: {0}", error);
                 await eventService.RaiseExternalLoginErrorEventAsync(error);
-                return RenderErrorPage(String.Format(localizationService.GetMessage(MessageIds.ExternalProviderError), error));
+                return RenderErrorPage(String.Format(localizationService.GetMessage(Messages.ExternalProviderError), error));
             }
 
             var signInId = await context.GetSignInIdFromExternalProvider();
@@ -363,7 +363,7 @@ namespace IdentityServer3.Core.Endpoints
             if (user == null)
             {
                 Logger.Error("no identity from external identity provider");
-                return await RenderLoginPage(signInMessage, signInId, localizationService.GetMessage(MessageIds.NoMatchingExternalAccount));
+                return await RenderLoginPage(signInMessage, signInId, localizationService.GetMessage(Messages.NoMatchingExternalAccount));
             }
 
             var externalIdentity = ExternalIdentity.FromClaims(user.Claims);
@@ -371,7 +371,7 @@ namespace IdentityServer3.Core.Endpoints
             {
                 var claims = user.Claims.Select(x => new { x.Type, x.Value });
                 Logger.ErrorFormat("no subject or unique identifier claims from external identity provider. Claims provided:\r\n{0}", LogSerializer.Serialize(claims));
-                return await RenderLoginPage(signInMessage, signInId, localizationService.GetMessage(MessageIds.NoMatchingExternalAccount));
+                return await RenderLoginPage(signInMessage, signInId, localizationService.GetMessage(Messages.NoMatchingExternalAccount));
             }
 
             Logger.InfoFormat("external user provider: {0}, provider ID: {1}", externalIdentity.Provider, externalIdentity.ProviderId);
@@ -389,7 +389,7 @@ namespace IdentityServer3.Core.Endpoints
             {
                 Logger.Warn("user service failed to authenticate external identity");
                 
-                var msg = localizationService.GetMessage(MessageIds.NoMatchingExternalAccount);
+                var msg = localizationService.GetMessage(Messages.NoMatchingExternalAccount);
                 await eventService.RaiseExternalLoginFailureEventAsync(externalIdentity, signInId, signInMessage, msg);
                 
                 return await RenderLoginPage(signInMessage, signInId, msg);
@@ -510,7 +510,7 @@ namespace IdentityServer3.Core.Endpoints
                 {
                     Logger.Warn("user service failed to authenticate external identity");
 
-                    var msg = localizationService.GetMessage(MessageIds.NoMatchingExternalAccount);
+                    var msg = localizationService.GetMessage(Messages.NoMatchingExternalAccount);
                     await eventService.RaiseExternalLoginFailureEventAsync(externalIdentity, signInId, signInMessage, msg);
 
                     return await RenderLoginPage(signInMessage, signInId, msg);
@@ -649,7 +649,7 @@ namespace IdentityServer3.Core.Endpoints
         {
             if (options.AuthenticationOptions.InvalidSignInRedirectUrl.IsMissing())
             {
-                return RenderErrorPage(localizationService.GetMessage(MessageIds.NoSignInCookie));
+                return RenderErrorPage(localizationService.GetMessage(Messages.NoSignInCookie));
             }
 
             var url = options.AuthenticationOptions.InvalidSignInRedirectUrl;
@@ -1029,7 +1029,7 @@ namespace IdentityServer3.Core.Endpoints
 
         private IHttpActionResult RenderErrorPage(string message = null)
         {
-            message = message ?? localizationService.GetMessage(MessageIds.UnexpectedError);
+            message = message ?? localizationService.GetMessage(Messages.UnexpectedError);
             var errorModel = new ErrorViewModel
             {
                 RequestId = context.GetRequestId(),

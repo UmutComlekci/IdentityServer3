@@ -86,7 +86,7 @@ namespace IdentityServer3.Core.Configuration.Hosting
                     RequestId = env.GetRequestId(),
                     SiteName = options.SiteName,
                     SiteUrl = env.GetIdentityServerBaseUrl(),
-                    ErrorMessage = localization.GetMessage(Resources.MessageIds.UnexpectedError),
+                    ErrorMessage = localization.GetMessage(Resources.Messages.UnexpectedError),
                     CurrentUser = env.GetCurrentUserDisplayName(),
                     LogoutUrl = env.GetIdentityServerLogoutUrl(),
                 };

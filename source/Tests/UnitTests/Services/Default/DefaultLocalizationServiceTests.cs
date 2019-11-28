@@ -54,17 +54,17 @@ namespace IdentityServer3.Tests.Services.Default
 
         public static IEnumerable<string> GetAllMessageIds()
         {
-            return typeof(MessageIds).GetFields().Select(m => m.GetRawConstantValue().ToString());
+            return typeof(Messages).GetFields().Select(m => m.GetRawConstantValue().ToString());
         }
 
         public static IEnumerable<string> GetAllEventIds()
         {
-            return typeof(EventIds).GetFields().Select(m => m.GetRawConstantValue().ToString());
+            return typeof(Events).GetFields().Select(m => m.GetRawConstantValue().ToString());
         }
 
         public static IEnumerable<string> GetAllScopeIds()
         {
-            return typeof(ScopeIds).GetFields().Select(m => m.GetRawConstantValue().ToString());
+            return typeof(Scopes).GetFields().Select(m => m.GetRawConstantValue().ToString());
         }
     }
 }
