@@ -92,17 +92,10 @@ namespace Owin
             app.ConfigureSignOutMessageCookie();
 
 
-            if (options.PluginConfiguration != null)
-            {
-                options.PluginConfiguration(app, options);
-            }
+			options.PluginConfiguration?.Invoke(app, options);
+			options.AuthenticationOptions.IdentityProviders?.Invoke(app, Constants.ExternalAuthenticationType);
 
-            if (options.AuthenticationOptions.IdentityProviders != null)
-            {
-                options.AuthenticationOptions.IdentityProviders(app, Constants.ExternalAuthenticationType);
-            }
-
-            app.ConfigureHttpLogging(options.LoggingOptions);
+			app.ConfigureHttpLogging(options.LoggingOptions);
 
             SignatureConversions.AddConversions(app);
             
