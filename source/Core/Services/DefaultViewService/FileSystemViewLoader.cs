@@ -34,7 +34,7 @@ namespace IdentityServer3.Core.Services.Default
         /// <exception cref="System.ArgumentNullException">directory</exception>
         public FileSystemViewLoader(string directory)
         {
-            if (String.IsNullOrWhiteSpace(directory)) throw new ArgumentNullException("directory");
+            if (String.IsNullOrWhiteSpace(directory)) throw new ArgumentNullException(nameof(directory));
             
             this.directory = directory;
         }

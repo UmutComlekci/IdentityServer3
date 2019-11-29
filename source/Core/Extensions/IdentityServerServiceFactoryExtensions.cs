@@ -48,8 +48,8 @@ namespace IdentityServer3.Core.Configuration
         public static void ConfigureScopeStoreCache(this IdentityServerServiceFactory factory,
             Registration<ICache<IEnumerable<Scope>>> cacheRegistration)
         {
-            if (factory == null) throw new ArgumentNullException("factory");
-            if (cacheRegistration == null) throw new ArgumentNullException("cacheRegistration");
+            if (factory == null) throw new ArgumentNullException(nameof(factory));
+            if (cacheRegistration == null) throw new ArgumentNullException(nameof(cacheRegistration));
             if (factory.ScopeStore == null) throw new ArgumentNullException("ScopeStore needs to be configured on the factory");
 
             factory.Register(new Registration<ICache<IEnumerable<Scope>>>(cacheRegistration, CachingRegistrationName));
@@ -101,8 +101,8 @@ namespace IdentityServer3.Core.Configuration
         public static void ConfigureClientStoreCache(this IdentityServerServiceFactory factory,
             Registration<ICache<Client>> cacheRegistration)
         {
-            if (factory == null) throw new ArgumentNullException("factory");
-            if (cacheRegistration == null) throw new ArgumentNullException("cacheRegistration");
+            if (factory == null) throw new ArgumentNullException(nameof(factory));
+            if (cacheRegistration == null) throw new ArgumentNullException(nameof(cacheRegistration));
             if (factory.ClientStore == null) throw new ArgumentNullException("ClientStore needs to be configured on the factory");
 
             factory.Register(new Registration<ICache<Client>>(cacheRegistration, CachingRegistrationName));
@@ -154,8 +154,8 @@ namespace IdentityServer3.Core.Configuration
         public static void ConfigureUserServiceCache(this IdentityServerServiceFactory factory,
            Registration<ICache<IEnumerable<Claim>>> cacheRegistration)
         {
-            if (factory == null) throw new ArgumentNullException("factory");
-            if (cacheRegistration == null) throw new ArgumentNullException("cacheRegistration");
+            if (factory == null) throw new ArgumentNullException(nameof(factory));
+            if (cacheRegistration == null) throw new ArgumentNullException(nameof(cacheRegistration));
             if (factory.UserService == null) throw new ArgumentNullException("UserService needs to be configured on the factory");
 
             factory.Register(new Registration<ICache<IEnumerable<Claim>>>(cacheRegistration, CachingRegistrationName));
@@ -206,8 +206,8 @@ namespace IdentityServer3.Core.Configuration
         public static void ConfigureDefaultViewService(this IdentityServerServiceFactory factory, 
             DefaultViewServiceOptions options)
         {
-            if (factory == null) throw new ArgumentNullException("factory");
-            if (options == null) throw new ArgumentNullException("options");
+            if (factory == null) throw new ArgumentNullException(nameof(factory));
+            if (options == null) throw new ArgumentNullException(nameof(options));
             
             if (factory.ViewService != null) throw new InvalidOperationException("A ViewService is already configured");
 
@@ -229,8 +229,8 @@ namespace IdentityServer3.Core.Configuration
             DefaultViewServiceOptions options)
             where T : DefaultViewService
         {
-            if (factory == null) throw new ArgumentNullException("factory");
-            if (options == null) throw new ArgumentNullException("options");
+            if (factory == null) throw new ArgumentNullException(nameof(factory));
+            if (options == null) throw new ArgumentNullException(nameof(options));
 
             if (factory.ViewService != null) throw new InvalidOperationException("A ViewService is already configured");
 

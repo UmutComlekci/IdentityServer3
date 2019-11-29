@@ -71,7 +71,7 @@ namespace IdentityServer3.Core.Services.Default
 
         protected virtual Event<T> PrepareEvent<T>(Event<T> evt)
         {
-            if (evt == null) throw new ArgumentNullException("evt");
+            if (evt == null) throw new ArgumentNullException(nameof(evt));
 
             evt.Context = new EventContext
             {

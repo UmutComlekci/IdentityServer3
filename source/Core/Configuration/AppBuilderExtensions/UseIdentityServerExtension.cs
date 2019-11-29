@@ -50,8 +50,8 @@ namespace Owin
         /// </exception>
         public static IAppBuilder UseIdentityServer(this IAppBuilder app, IdentityServerOptions options)
         {
-            if (app == null) throw new ArgumentNullException("app");
-            if (options == null) throw new ArgumentNullException("options");
+            if (app == null) throw new ArgumentNullException(nameof(app));
+            if (options == null) throw new ArgumentNullException(nameof(options));
 
             options.Validate();
 

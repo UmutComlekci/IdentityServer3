@@ -34,7 +34,7 @@ namespace IdentityServer3.Core.Configuration.Hosting
 
         public CorsPolicyProvider(IEnumerable<string> allowedPaths)
         {
-            if (allowedPaths == null) throw new ArgumentNullException("allowedPaths");
+            if (allowedPaths == null) throw new ArgumentNullException(nameof(allowedPaths));
 
             this.paths = allowedPaths.Select(Normalize).ToArray();
         }

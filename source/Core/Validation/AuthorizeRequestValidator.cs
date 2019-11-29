@@ -66,7 +66,7 @@ namespace IdentityServer3.Core.Validation
             if (parameters == null)
             {
                 Logger.Error("Parameters are null.");
-                throw new ArgumentNullException("parameters");
+                throw new ArgumentNullException(nameof(parameters));
             }
 
             request.Raw = parameters;

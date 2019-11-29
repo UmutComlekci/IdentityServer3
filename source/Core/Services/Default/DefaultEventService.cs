@@ -38,7 +38,7 @@ namespace IdentityServer3.Core.Services.Default
         /// <exception cref="System.ArgumentNullException">evt</exception>
         public virtual Task RaiseAsync<T>(Event<T> evt)
         {
-            if (evt == null) throw new ArgumentNullException("evt");
+            if (evt == null) throw new ArgumentNullException(nameof(evt));
             
             var json = LogSerializer.Serialize(evt);
             Logger.Info(json);

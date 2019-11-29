@@ -25,8 +25,8 @@ namespace IdentityServer3.Core.Results
         public ErrorActionResult(IViewService viewSvc, ErrorViewModel model)
             : base(async () => await viewSvc.Error(model))
         {
-            if (viewSvc == null) throw new ArgumentNullException("viewSvc");
-            if (model == null) throw new ArgumentNullException("model");
+            if (viewSvc == null) throw new ArgumentNullException(nameof(viewSvc));
+            if (model == null) throw new ArgumentNullException(nameof(model));
         }
     }
 }

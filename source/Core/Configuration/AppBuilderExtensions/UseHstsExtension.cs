@@ -33,7 +33,7 @@ namespace Owin
         /// <exception cref="System.ArgumentException">duration cannot be below zero</exception>
         public static IAppBuilder UseHsts(this IAppBuilder app, TimeSpan duration)
         {
-            if (app == null) throw new ArgumentNullException("app");
+            if (app == null) throw new ArgumentNullException(nameof(app));
             if (duration < TimeSpan.Zero) throw new ArgumentException("duration cannot be below zero");
 
             if (duration >= TimeSpan.Zero)

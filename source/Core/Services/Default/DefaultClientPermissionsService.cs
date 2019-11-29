@@ -51,10 +51,10 @@ namespace IdentityServer3.Core.Services.Default
             IScopeStore scopeStore,
             ILocalizationService localizationService)
         {
-            if (permissionsStore == null) throw new ArgumentNullException("permissionsStore");
-            if (clientStore == null) throw new ArgumentNullException("clientStore");
-            if (scopeStore == null) throw new ArgumentNullException("scopeStore");
-            if (localizationService == null) throw new ArgumentNullException("localizationService");
+            if (permissionsStore == null) throw new ArgumentNullException(nameof(permissionsStore));
+            if (clientStore == null) throw new ArgumentNullException(nameof(clientStore));
+            if (scopeStore == null) throw new ArgumentNullException(nameof(scopeStore));
+            if (localizationService == null) throw new ArgumentNullException(nameof(localizationService));
 
             this.permissionsStore = permissionsStore;
             this.clientStore = clientStore;
@@ -74,7 +74,7 @@ namespace IdentityServer3.Core.Services.Default
         {
             if (String.IsNullOrWhiteSpace(subject))
             {
-                throw new ArgumentNullException("subject");
+                throw new ArgumentNullException(nameof(subject));
             }
 
             var consents = await this.permissionsStore.LoadAllAsync(subject);
@@ -136,12 +136,12 @@ namespace IdentityServer3.Core.Services.Default
         {
             if (String.IsNullOrWhiteSpace(subject))
             {
-                throw new ArgumentNullException("subject");
+                throw new ArgumentNullException(nameof(subject));
             }
 
             if (String.IsNullOrWhiteSpace(clientId))
             {
-                throw new ArgumentNullException("clientId");
+                throw new ArgumentNullException(nameof(clientId));
             }
 
             await this.permissionsStore.RevokeAsync(subject, clientId);

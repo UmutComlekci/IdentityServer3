@@ -97,7 +97,7 @@ namespace IdentityServer3.Core.Extensions
         /// </exception>
         public static string CreateSignInRequest(this IDictionary<string, object> env)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             return env.CreateSignInRequest(new SignInMessage());
         }
@@ -115,8 +115,8 @@ namespace IdentityServer3.Core.Extensions
         /// </exception>
         public static string CreateSignInRequest(this IDictionary<string, object> env, SignInMessage message)
         {
-            if (env == null) throw new ArgumentNullException("env");
-            if (message == null) throw new ArgumentNullException("message");
+            if (env == null) throw new ArgumentNullException(nameof(env));
+            if (message == null) throw new ArgumentNullException(nameof(message));
 
             // if there's no return url, then use current request's URL
             if (message.ReturnUrl.IsMissing())
@@ -155,8 +155,8 @@ namespace IdentityServer3.Core.Extensions
         /// </exception>
         public static void IssueLoginCookie(this IDictionary<string, object> env, AuthenticatedLogin login)
         {
-            if (env == null) throw new ArgumentNullException("env");
-            if (login == null) throw new ArgumentNullException("login");
+            if (env == null) throw new ArgumentNullException(nameof(env));
+            if (login == null) throw new ArgumentNullException(nameof(login));
 
             var options = env.ResolveDependency<IdentityServerOptions>();
             var sessionCookie = env.ResolveDependency<SessionCookie>();
@@ -215,7 +215,7 @@ namespace IdentityServer3.Core.Extensions
         /// <exception cref="System.ArgumentNullException">env</exception>
         public static string CreateSignOutRequest(this IDictionary<string, object> env)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             return env.CreateSignOutRequest(new SignOutMessage());
         }
@@ -229,7 +229,7 @@ namespace IdentityServer3.Core.Extensions
         /// <exception cref="System.ArgumentNullException">message</exception>
         public static string CreateSignOutRequest(this IDictionary<string, object> env, SignOutMessage message)
         {
-            if (message == null) throw new ArgumentNullException("message");
+            if (message == null) throw new ArgumentNullException(nameof(message));
 
             // if there's no return url, then use current request's URL
             if (message.ReturnUrl.IsMissing())
@@ -270,8 +270,8 @@ namespace IdentityServer3.Core.Extensions
         /// <exception cref="System.Exception">No partial login</exception>
         public static async Task UpdatePartialLoginClaimsAsync(this IDictionary<string, object> env, IEnumerable<Claim> claims)
         {
-            if (env == null) throw new ArgumentNullException("env");
-            if (claims == null) throw new ArgumentNullException("claims");
+            if (env == null) throw new ArgumentNullException(nameof(env));
+            if (claims == null) throw new ArgumentNullException(nameof(claims));
 
             var context = new OwinContext(env);
             var result = await context.Authentication.AuthenticateAsync(Constants.PartialSignInAuthenticationType);
@@ -332,7 +332,7 @@ namespace IdentityServer3.Core.Extensions
             string authenticationMethod = null
         )
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             var authResult = new IdentityServer3.Core.Models.AuthenticateResult(subject, name, claims, identityProvider, authenticationMethod);
             await env.UpdatePartialLoginClaimsAsync(authResult.User.Claims);
@@ -347,7 +347,7 @@ namespace IdentityServer3.Core.Extensions
         /// <exception cref="System.Exception">No partial login</exception>
         public static async Task<string> GetPartialLoginRestartUrlAsync(this IDictionary<string, object> env)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             var context = new OwinContext(env);
             var result = await context.Authentication.AuthenticateAsync(Constants.PartialSignInAuthenticationType);
@@ -370,7 +370,7 @@ namespace IdentityServer3.Core.Extensions
         /// <exception cref="System.Exception">No partial login</exception>
         public static async Task<string> GetPartialLoginResumeUrlAsync(this IDictionary<string, object> env)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
             
             var context = new OwinContext(env);
             var result = await context.Authentication.AuthenticateAsync(Constants.PartialSignInAuthenticationType);
@@ -393,7 +393,7 @@ namespace IdentityServer3.Core.Extensions
         /// <exception cref="System.Exception">No partial login</exception>
         public static async Task<bool?> GetPartialLoginRememberMeAsync(this IDictionary<string, object> env)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             var context = new OwinContext(env);
             return await context.GetPartialLoginRememberMeAsync();
@@ -412,8 +412,8 @@ namespace IdentityServer3.Core.Extensions
         /// </exception>
         public static SignInMessage GetSignInMessage(this IDictionary<string, object> env, string id)
         {
-            if (env == null) throw new ArgumentNullException("env");
-            if (string.IsNullOrEmpty(id)) throw new ArgumentNullException("id");
+            if (env == null) throw new ArgumentNullException(nameof(env));
+            if (string.IsNullOrEmpty(id)) throw new ArgumentNullException(nameof(id));
 
             var options = env.ResolveDependency<IdentityServerOptions>();
             var cookie = new MessageCookie<SignInMessage>(env, options);
@@ -433,7 +433,7 @@ namespace IdentityServer3.Core.Extensions
         /// </exception>
         public static SignInMessage GetSignInMessage(this IDictionary<string, object> env)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             var ctx = new OwinContext(env);
             var id = ctx.Request.Query.Get(Constants.Authentication.SigninQueryParamName);
@@ -455,7 +455,7 @@ namespace IdentityServer3.Core.Extensions
         /// </exception>
         public static string GetSignOutMessageId(this IDictionary<string, object> env)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             var ctx = new OwinContext(env);
             return ctx.Request.Query.Get(Constants.Authentication.SignoutId);
@@ -474,8 +474,8 @@ namespace IdentityServer3.Core.Extensions
         /// </exception>
         public static SignOutMessage GetSignOutMessage(this IDictionary<string, object> env, string id)
         {
-            if (env == null) throw new ArgumentNullException("env");
-            if (string.IsNullOrEmpty(id)) throw new ArgumentNullException("id");
+            if (env == null) throw new ArgumentNullException(nameof(env));
+            if (string.IsNullOrEmpty(id)) throw new ArgumentNullException(nameof(id));
 
             var options = env.ResolveDependency<IdentityServerOptions>();
             var cookie = new MessageCookie<SignOutMessage>(env, options);
@@ -495,7 +495,7 @@ namespace IdentityServer3.Core.Extensions
         /// </exception>
         public static SignOutMessage GetSignOutMessage(this IDictionary<string, object> env)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
             return env.GetSignOutMessage(env.GetSignOutMessageId());
         }
 
@@ -507,7 +507,7 @@ namespace IdentityServer3.Core.Extensions
         /// <exception cref="System.ArgumentNullException">env</exception>
         public static async Task<ClaimsIdentity> GetIdentityServerFullLoginAsync(this IDictionary<string, object> env)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             var context = new OwinContext(env);
             return await context.GetIdentityFrom(Constants.PrimaryAuthenticationType);
@@ -521,7 +521,7 @@ namespace IdentityServer3.Core.Extensions
         /// <exception cref="System.ArgumentNullException">env</exception>
         public static async Task<ClaimsIdentity> GetIdentityServerPartialLoginAsync(this IDictionary<string, object> env)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             var context = new OwinContext(env);
             return await context.GetIdentityFrom(Constants.PartialSignInAuthenticationType);
@@ -534,7 +534,7 @@ namespace IdentityServer3.Core.Extensions
         /// <exception cref="System.ArgumentNullException">env</exception>
         public static void RemovePartialLoginCookie(this IDictionary<string, object> env)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             var context = new OwinContext(env);
             context.Authentication.SignOut(Constants.PartialSignInAuthenticationType);
@@ -564,7 +564,7 @@ namespace IdentityServer3.Core.Extensions
         /// <returns></returns>
         public static void SetIdentityServerOrigin(this IDictionary<string, object> env, string origin)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             env[Constants.OwinEnvironment.IdentityServerOrigin] = origin;
         }
@@ -577,7 +577,7 @@ namespace IdentityServer3.Core.Extensions
         /// <returns></returns>
         public static string GetIdentityServerOrigin(this IDictionary<string, object> env)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             object value;
             if (env.TryGetValue(Constants.OwinEnvironment.IdentityServerOrigin, out value))
@@ -600,7 +600,7 @@ namespace IdentityServer3.Core.Extensions
         /// <returns></returns>
         public static T ResolveDependency<T>(this IDictionary<string, object> env)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             var context = new OwinContext(env);
             return context.ResolveDependency<T>();
@@ -614,7 +614,7 @@ namespace IdentityServer3.Core.Extensions
         /// <returns></returns>
         public static object ResolveDependency(this IDictionary<string, object> env, Type type)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             var context = new OwinContext(env);
             return context.ResolveDependency(type);
@@ -628,7 +628,7 @@ namespace IdentityServer3.Core.Extensions
         /// <returns></returns>
         public static Task RenderLoggedOutViewAsync(this IDictionary<string, object> env, string signOutMessageId)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             var context = new OwinContext(env);
             context.QueueRenderLoggedOutPage(signOutMessageId);
@@ -642,7 +642,7 @@ namespace IdentityServer3.Core.Extensions
         /// <returns></returns>
         public static async Task ProcessFederatedSignoutAsync(this IDictionary<string, object> env)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             var context = new OwinContext(env);
             context.ClearAuthenticationCookies();
@@ -669,7 +669,7 @@ namespace IdentityServer3.Core.Extensions
         /// <returns></returns>
         public static string GetIdentityServerIssuerUri(this IDictionary<string, object> env)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             var options = env.ResolveDependency<IdentityServerOptions>();
 
@@ -692,7 +692,7 @@ namespace IdentityServer3.Core.Extensions
         /// <returns></returns>
         public static IEnumerable<string> GetClientIdsForCurrentAuthenticationSession(this IDictionary<string, object> env)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             var clientListCookie = env.ResolveDependency<ClientListCookie>();
             return clientListCookie.GetClients();

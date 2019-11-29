@@ -26,8 +26,8 @@ namespace IdentityServer3.Core.Results
         public LogoutActionResult(IViewService viewSvc, LogoutViewModel model, SignOutMessage message)
             : base(async () => await viewSvc.Logout(model, message))
         {
-            if (viewSvc == null) throw new ArgumentNullException("viewSvc");
-            if (model == null) throw new ArgumentNullException("model");
+            if (viewSvc == null) throw new ArgumentNullException(nameof(viewSvc));
+            if (model == null) throw new ArgumentNullException(nameof(model));
         }
     }
 }

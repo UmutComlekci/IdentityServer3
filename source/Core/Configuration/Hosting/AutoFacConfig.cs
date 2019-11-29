@@ -38,7 +38,7 @@ namespace IdentityServer3.Core.Configuration.Hosting
 
         public static IContainer Configure(IdentityServerOptions options)
         {
-            if (options == null) throw new ArgumentNullException("options");
+            if (options == null) throw new ArgumentNullException(nameof(options));
             if (options.Factory == null) throw new InvalidOperationException("null factory");
 
             IdentityServerServiceFactory fact = options.Factory;

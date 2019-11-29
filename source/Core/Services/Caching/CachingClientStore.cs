@@ -41,8 +41,8 @@ namespace IdentityServer3.Core.Services.Caching
         /// </exception>
         public CachingClientStore(IClientStore inner, ICache<Client> cache)
         {
-            if (inner == null) throw new ArgumentNullException("inner");
-            if (cache == null) throw new ArgumentNullException("cache");
+            if (inner == null) throw new ArgumentNullException(nameof(inner));
+            if (cache == null) throw new ArgumentNullException(nameof(cache));
 
             this.inner = inner;
             this.cache = cache;

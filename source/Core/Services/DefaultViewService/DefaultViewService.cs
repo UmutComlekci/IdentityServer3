@@ -81,8 +81,8 @@ namespace IdentityServer3.Core.Services.Default
         /// </summary>
         public DefaultViewService(DefaultViewServiceOptions config, IViewLoader viewLoader)
         {
-            if (config == null) throw new ArgumentNullException("config");
-            if (viewLoader == null) throw new ArgumentNullException("viewLoader");
+            if (config == null) throw new ArgumentNullException(nameof(config));
+            if (viewLoader == null) throw new ArgumentNullException(nameof(viewLoader));
 
             this.config = config;
             this.viewLoader = viewLoader;
@@ -268,9 +268,9 @@ namespace IdentityServer3.Core.Services.Default
 
         Dictionary<string, object> BuildModelDictionary(CommonViewModel model, string page, IEnumerable<string> stylesheets, IEnumerable<string> scripts)
         {
-            if (model == null) throw new ArgumentNullException("model");
-            if (stylesheets == null) throw new ArgumentNullException("stylesheets");
-            if (scripts == null) throw new ArgumentNullException("scripts");
+            if (model == null) throw new ArgumentNullException(nameof(model));
+            if (stylesheets == null) throw new ArgumentNullException(nameof(stylesheets));
+            if (scripts == null) throw new ArgumentNullException(nameof(scripts));
 
             var applicationPath = new Uri(model.SiteUrl).AbsolutePath;
             if (applicationPath.EndsWith("/")) applicationPath = applicationPath.Substring(0, applicationPath.Length - 1);

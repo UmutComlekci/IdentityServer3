@@ -41,7 +41,7 @@ namespace IdentityServer3.Core.Services.Default
         /// <exception cref="System.ArgumentNullException">store</exception>
         public DefaultConsentService(IConsentStore store)
         {
-            if (store == null) throw new ArgumentNullException("store");
+            if (store == null) throw new ArgumentNullException(nameof(store));
 
             this._store = store;
         }
@@ -55,8 +55,8 @@ namespace IdentityServer3.Core.Services.Default
         /// <returns>Boolean if consent is required.</returns>
         public virtual async Task<bool> RequiresConsentAsync(Client client, ClaimsPrincipal subject, IEnumerable<string> scopes)
         {
-            if (client == null) throw new ArgumentNullException("client");
-            if (subject == null) throw new ArgumentNullException("subject");
+            if (client == null) throw new ArgumentNullException(nameof(client));
+            if (subject == null) throw new ArgumentNullException(nameof(subject));
 
             if (!client.RequireConsent)
             {
@@ -100,8 +100,8 @@ namespace IdentityServer3.Core.Services.Default
         /// <returns></returns>
         public virtual async Task UpdateConsentAsync(Client client, ClaimsPrincipal subject, IEnumerable<string> scopes)
         {
-            if (client == null) throw new ArgumentNullException("client");
-            if (subject == null) throw new ArgumentNullException("subject");
+            if (client == null) throw new ArgumentNullException(nameof(client));
+            if (subject == null) throw new ArgumentNullException(nameof(subject));
 
             if (client.AllowRememberConsent)
             {

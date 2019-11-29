@@ -45,11 +45,11 @@ namespace IdentityServer3.Core
             string authenticationType = Constants.PrimaryAuthenticationType,
             long authenticationTime = 0)
         {
-            if (String.IsNullOrWhiteSpace(subject)) throw new ArgumentNullException("subject");
-            if (String.IsNullOrWhiteSpace(displayName)) throw new ArgumentNullException("displayName");
-            if (String.IsNullOrWhiteSpace(authenticationMethod)) throw new ArgumentNullException("authenticationMethod");
-            if (String.IsNullOrWhiteSpace(idp)) throw new ArgumentNullException("idp");
-            if (String.IsNullOrWhiteSpace(authenticationType)) throw new ArgumentNullException("authenticationType");
+            if (String.IsNullOrWhiteSpace(subject)) throw new ArgumentNullException(nameof(subject));
+            if (String.IsNullOrWhiteSpace(displayName)) throw new ArgumentNullException(nameof(displayName));
+            if (String.IsNullOrWhiteSpace(authenticationMethod)) throw new ArgumentNullException(nameof(authenticationMethod));
+            if (String.IsNullOrWhiteSpace(idp)) throw new ArgumentNullException(nameof(idp));
+            if (String.IsNullOrWhiteSpace(authenticationType)) throw new ArgumentNullException(nameof(authenticationType));
 
             if (authenticationTime <= 0) authenticationTime = DateTimeOffset.UtcNow.ToEpochTime();
 

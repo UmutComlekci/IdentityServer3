@@ -29,8 +29,8 @@ namespace IdentityServer3.Core.Models
         /// </summary>
         public IsActiveContext(ClaimsPrincipal subject, Client client)
         {
-            if (subject == null) throw new ArgumentNullException("subject");
-            if (client == null) throw new ArgumentNullException("client");
+            if (subject == null) throw new ArgumentNullException(nameof(subject));
+            if (client == null) throw new ArgumentNullException(nameof(client));
 
             Subject = subject;
             Client = client;

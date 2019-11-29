@@ -65,7 +65,7 @@ namespace IdentityServer3.Core.Services.Default
         /// <exception cref="System.ArgumentNullException">options</exception>
         public DefaultViewServiceRegistration(DefaultViewServiceOptions options)
         {
-            if (options == null) throw new ArgumentNullException("options");
+            if (options == null) throw new ArgumentNullException(nameof(options));
 
             AdditionalRegistrations.Add(new Registration<DefaultViewServiceOptions>(options));
 

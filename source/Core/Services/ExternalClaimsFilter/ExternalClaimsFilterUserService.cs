@@ -27,8 +27,8 @@ namespace IdentityServer3.Core.Services.Default
 
         public ExternalClaimsFilterUserService(IExternalClaimsFilter filter, IUserService inner)
         {
-            if (filter == null) throw new ArgumentNullException("filter");
-            if (inner == null) throw new ArgumentNullException("inner");
+            if (filter == null) throw new ArgumentNullException(nameof(filter));
+            if (inner == null) throw new ArgumentNullException(nameof(inner));
 
             this.filter = filter;
             this.inner = inner;

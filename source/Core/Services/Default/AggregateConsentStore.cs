@@ -28,7 +28,7 @@ namespace IdentityServer3.Core.Services.Default
 
         public AggregatePermissionsStore(params IPermissionsStore[] stores)
         {
-            if (stores == null) throw new ArgumentNullException("stores");
+            if (stores == null) throw new ArgumentNullException(nameof(stores));
 
             this.stores = stores;
         }

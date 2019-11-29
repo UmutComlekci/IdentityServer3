@@ -58,7 +58,7 @@ namespace IdentityServer3.Core.Extensions
 
         internal static bool HasIdpAcrValue(this ValidatedAuthorizeRequest request)
         {
-            if (request == null) throw new ArgumentNullException("request");
+            if (request == null) throw new ArgumentNullException(nameof(request));
 
             return request.AuthenticationContextReferenceClasses.Any(x => x.StartsWith(Constants.KnownAcrValues.HomeRealm));
         }

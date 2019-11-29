@@ -26,8 +26,8 @@ namespace IdentityServer3.Core.Validation
     {
         public Task<TokenRevocationRequestValidationResult> ValidateRequestAsync(NameValueCollection parameters, Client client)
         {
-            if (parameters == null) throw new ArgumentNullException("parameters");
-            if (client == null) throw new ArgumentNullException("client");
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            if (client == null) throw new ArgumentNullException(nameof(client));
 
             ////////////////////////////
             // make sure token is present

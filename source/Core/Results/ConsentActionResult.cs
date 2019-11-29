@@ -26,9 +26,9 @@ namespace IdentityServer3.Core.Results
         public ConsentActionResult(IViewService viewSvc, ConsentViewModel model, ValidatedAuthorizeRequest validatedRequest)
             : base(async () => await viewSvc.Consent(model, validatedRequest))
         {
-            if (viewSvc == null) throw new ArgumentNullException("viewSvc");
-            if (model == null) throw new ArgumentNullException("model");
-            if (validatedRequest == null) throw new ArgumentNullException("validatedRequest");
+            if (viewSvc == null) throw new ArgumentNullException(nameof(viewSvc));
+            if (model == null) throw new ArgumentNullException(nameof(model));
+            if (validatedRequest == null) throw new ArgumentNullException(nameof(validatedRequest));
         }
     }
 }

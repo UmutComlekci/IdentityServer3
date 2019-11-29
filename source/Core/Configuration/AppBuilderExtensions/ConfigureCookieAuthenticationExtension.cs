@@ -32,8 +32,8 @@ namespace Owin
     {
         public static IAppBuilder ConfigureCookieAuthentication(this IAppBuilder app, CookieOptions options, IDataProtector dataProtector)
         {
-            if (options == null) throw new ArgumentNullException("options");
-            if (dataProtector == null) throw new ArgumentNullException("dataProtector");
+            if (options == null) throw new ArgumentNullException(nameof(options));
+            if (dataProtector == null) throw new ArgumentNullException(nameof(dataProtector));
 
             if (options.Prefix.IsPresent())
             {

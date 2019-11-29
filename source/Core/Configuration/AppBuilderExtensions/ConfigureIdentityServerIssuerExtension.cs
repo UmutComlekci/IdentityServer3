@@ -26,8 +26,8 @@ namespace Owin
         // todo: remove this in 3.0.0 as it will be unnecessary. it's only being maintained now for backwards compat with 2.0 APIs.
         public static IAppBuilder ConfigureIdentityServerIssuer(this IAppBuilder app, IdentityServerOptions options)
         {
-            if (app == null) throw new ArgumentNullException("app");
-            if (options == null) throw new ArgumentNullException("options");
+            if (app == null) throw new ArgumentNullException(nameof(app));
+            if (options == null) throw new ArgumentNullException(nameof(options));
 
             if (options.IssuerUri.IsPresent())
             {

@@ -753,7 +753,7 @@ namespace IdentityServer3.Core.Endpoints
 
         private void IssueAuthenticationCookie(string signInMessageId, AuthenticateResult authResult, bool? rememberMe = null)
         {
-            if (authResult == null) throw new ArgumentNullException("authResult");
+            if (authResult == null) throw new ArgumentNullException(nameof(authResult));
 
             if (authResult.IsPartialSignIn)
             {
@@ -827,8 +827,8 @@ namespace IdentityServer3.Core.Endpoints
 
         private Uri GetRedirectUrl(SignInMessage signInMessage, AuthenticateResult authResult)
         {
-            if (signInMessage == null) throw new ArgumentNullException("signInMessage");
-            if (authResult == null) throw new ArgumentNullException("authResult");
+            if (signInMessage == null) throw new ArgumentNullException(nameof(signInMessage));
+            if (authResult == null) throw new ArgumentNullException(nameof(authResult));
 
             if (authResult.IsPartialSignIn)
             {
@@ -875,7 +875,7 @@ namespace IdentityServer3.Core.Endpoints
 
         private async Task<IHttpActionResult> RenderLoginPage(SignInMessage message, string signInMessageId, string errorMessage = null, string username = null, bool rememberMe = false)
         {
-            if (message == null) throw new ArgumentNullException("message");
+            if (message == null) throw new ArgumentNullException(nameof(message));
 
             username = GetUserNameForLoginPage(message, username);
 
@@ -950,9 +950,9 @@ namespace IdentityServer3.Core.Endpoints
                 LogoutUrl = context.GetIdentityServerLogoutUrl(),
                 AntiForgery = antiForgeryToken.GetAntiForgeryToken(),
                 Username = username,
-                ClientName = client != null ? client.ClientName : null,
-                ClientUrl = client != null ? client.ClientUri : null,
-                ClientLogoUrl = client != null ? client.LogoUri : null
+                ClientName = client?.ClientName,
+                ClientUrl = client?.ClientUri,
+                ClientLogoUrl = client?.LogoUri
             };
 
             return new LoginActionResult(viewService, loginModel, message);
@@ -1011,7 +1011,7 @@ namespace IdentityServer3.Core.Endpoints
             var iframeUrls = options.RenderProtocolUrls(baseUrl, sessionCookie.GetSessionId());
 
             var message = signOutMessageCookie.Read(id);
-            var redirectUrl = message != null ? message.ReturnUrl : null;
+            var redirectUrl = message?.ReturnUrl;
             var clientName = await clientStore.GetClientName(message);
             
             var loggedOutModel = new LoggedOutViewModel

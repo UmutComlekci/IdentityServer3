@@ -356,7 +356,7 @@ namespace IdentityServer3.Core.Logging
         {
             if (logger == null)
             {
-                throw new ArgumentNullException("logger");
+                throw new ArgumentNullException(nameof(logger));
             }
         }
 
@@ -1266,7 +1266,7 @@ namespace IdentityServer3.Core.Logging.LogProviders
                     case LogLevel.Fatal:
                         return _levelFatal;
                     default:
-                        throw new ArgumentOutOfRangeException("logLevel", logLevel, null);
+                        throw new ArgumentOutOfRangeException(nameof(logLevel), logLevel, null);
                 }
             }
         }
@@ -1814,7 +1814,7 @@ namespace IdentityServer3.Core.Logging.LogProviders
                     case LogLevel.Fatal:
                         return TraceEventTypeValues.Critical;
                     default:
-                        throw new ArgumentOutOfRangeException("logLevel");
+                        throw new ArgumentOutOfRangeException(nameof(logLevel));
                 }
             }
         }

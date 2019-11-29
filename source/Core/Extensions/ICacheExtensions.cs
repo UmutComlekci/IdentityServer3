@@ -45,8 +45,8 @@ namespace IdentityServer3.Core.Extensions
         public static async Task<T> GetAsync<T>(this ICache<T> cache, string key, Func<Task<T>> get)
             where T : class
         {
-            if (cache == null) throw new ArgumentNullException("cache");
-            if (get == null) throw new ArgumentNullException("get");
+            if (cache == null) throw new ArgumentNullException(nameof(cache));
+            if (get == null) throw new ArgumentNullException(nameof(get));
             if (key == null) return null;
 
             T item = await cache.GetAsync(key);

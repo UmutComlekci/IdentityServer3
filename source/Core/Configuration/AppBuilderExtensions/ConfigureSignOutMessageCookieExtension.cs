@@ -25,7 +25,7 @@ namespace Owin
     {
         public static IAppBuilder ConfigureSignOutMessageCookie(this IAppBuilder app)
         {
-            if (app == null) throw new ArgumentNullException("app");
+            if (app == null) throw new ArgumentNullException(nameof(app));
 
             return app.Use(async (context, next) =>
             {

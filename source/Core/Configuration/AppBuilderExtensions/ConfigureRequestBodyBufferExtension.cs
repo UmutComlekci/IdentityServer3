@@ -8,7 +8,7 @@ namespace Owin
     {
         public static IAppBuilder ConfigureRequestBodyBuffer(this IAppBuilder app)
         {
-            if (app == null) throw new ArgumentNullException("app");
+            if (app == null) throw new ArgumentNullException(nameof(app));
 
             app.Use(async (context, next) =>
             {

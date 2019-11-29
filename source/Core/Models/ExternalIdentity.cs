@@ -59,7 +59,7 @@ namespace IdentityServer3.Core.Models
         /// <exception cref="System.ArgumentNullException">claims</exception>
         public static ExternalIdentity FromClaims(IEnumerable<Claim> claims)
         {
-            if (claims == null) throw new ArgumentNullException("claims");
+            if (claims == null) throw new ArgumentNullException(nameof(claims));
 
             var subClaim = claims.FirstOrDefault(x => x.Type == Constants.ClaimTypes.Subject);
             if (subClaim == null)

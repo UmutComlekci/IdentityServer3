@@ -46,7 +46,7 @@ namespace IdentityServer3.Core.Services.Default
         /// <exception cref="System.ArgumentOutOfRangeException">duration;Duration must be greater than zero</exception>
         public DefaultCache(TimeSpan duration)
         {
-            if (duration <= TimeSpan.Zero) throw new ArgumentOutOfRangeException("duration", "Duration must be greater than zero");
+            if (duration <= TimeSpan.Zero) throw new ArgumentOutOfRangeException(nameof(duration), "Duration must be greater than zero");
 
             this.cache = new MemoryCache("cache");
             this.duration = duration;

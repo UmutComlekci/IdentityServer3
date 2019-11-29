@@ -37,42 +37,42 @@ namespace IdentityServer3.Core.Extensions
     {
         public static string GetRequestId(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             return context.Environment.GetRequestId();
         }
 
         public static void SetRequestId(this IDictionary<string, object> env, string id)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             env[Constants.OwinEnvironment.RequestId] = id;
         }
 
         public static void SetIdentityServerHost(this IDictionary<string, object> env, string value)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             env[Constants.OwinEnvironment.IdentityServerHost] = value;
         }
 
         public static void SetIdentityServerBasePath(this IDictionary<string, object> env, string value)
         {
-            if (env == null) throw new ArgumentNullException("env");
+            if (env == null) throw new ArgumentNullException(nameof(env));
 
             env[Constants.OwinEnvironment.IdentityServerBasePath] = value;
         }
 
         public static T ResolveDependency<T>(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             return (T)context.ResolveDependency(typeof(T));
         }
 
         public static object ResolveDependency(this IOwinContext context, Type type)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             var scope = context.GetAutofacLifetimeScope();
             return scope.ResolveOptional(type);
@@ -80,7 +80,7 @@ namespace IdentityServer3.Core.Extensions
 
         public static IEnumerable<AuthenticationDescription> GetExternalAuthenticationProviders(this IOwinContext context, IEnumerable<string> filter = null)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             var types = context.Authentication.GetAuthenticationTypes().Where(x => !Constants.IdentityServerAuthenticationTypes.Contains(x.AuthenticationType));
 
@@ -94,14 +94,14 @@ namespace IdentityServer3.Core.Extensions
 
         public static bool IsValidExternalAuthenticationProvider(this IOwinContext context, string name)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             return context.Authentication.GetAuthenticationTypes().Any(x => x.AuthenticationType == name);
         }
 
         public static IEnumerable<LoginPageLink> GetLinksFromProviders(this IOwinContext context, IEnumerable<AuthenticationDescription> types, string signInMessageId)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             if (types != null)
             {
@@ -118,22 +118,22 @@ namespace IdentityServer3.Core.Extensions
 
         public static IEnumerable<LoginPageLink> FilterHiddenLinks(this IEnumerable<LoginPageLink> links)
         {
-            if (links == null) throw new ArgumentNullException("links");
+            if (links == null) throw new ArgumentNullException(nameof(links));
 
             return links.Where(x => x.Text.IsPresent());
         }
 
         public static async Task<Microsoft.Owin.Security.AuthenticateResult> GetAuthenticationFrom(this IOwinContext context, string authenticationType)
         {
-            if (context == null) throw new ArgumentNullException("context");
-            if (authenticationType.IsMissing()) throw new ArgumentNullException("authenticationType");
+            if (context == null) throw new ArgumentNullException(nameof(context));
+            if (authenticationType.IsMissing()) throw new ArgumentNullException(nameof(authenticationType));
 
             return await context.Authentication.AuthenticateAsync(authenticationType);
         }
 
         public static async Task<ClaimsIdentity> GetIdentityFrom(this IOwinContext context, string authenticationType)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
             
             var result = await context.GetAuthenticationFrom(authenticationType);
             if (result != null &&
@@ -147,14 +147,14 @@ namespace IdentityServer3.Core.Extensions
 
         public static async Task<ClaimsIdentity> GetIdentityFromPartialSignIn(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             return await context.GetIdentityFrom(Constants.PartialSignInAuthenticationType);
         }
 
         public static async Task<bool?> GetPartialLoginRememberMeAsync(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             var result = await context.Authentication.AuthenticateAsync(Constants.PartialSignInAuthenticationType);
             if (result == null || result.Identity == null || result.Identity.IsAuthenticated == false)
@@ -172,14 +172,14 @@ namespace IdentityServer3.Core.Extensions
 
         public static async Task<ClaimsIdentity> GetIdentityFromExternalSignIn(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             return await context.GetIdentityFrom(Constants.ExternalAuthenticationType);
         }
 
         public static async Task<string> GetSignInIdFromExternalProvider(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
             
             var result = await context.GetAuthenticationFrom(Constants.ExternalAuthenticationType);
             if (result != null)
@@ -195,7 +195,7 @@ namespace IdentityServer3.Core.Extensions
 
         public static async Task<ClaimsIdentity> GetIdentityFromExternalProvider(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             var id = await context.GetIdentityFromExternalSignIn();
             if (id != null)
@@ -217,82 +217,82 @@ namespace IdentityServer3.Core.Extensions
 
         public static string GetCspReportUrl(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             return context.Environment.GetIdentityServerBaseUrl() + Constants.RoutePaths.CspReport;
         }
 
         public static string GetPartialLoginRestartUrl(this IOwinContext context, string signinId)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
-            if (String.IsNullOrWhiteSpace(signinId)) throw new ArgumentNullException("signinId");
+            if (String.IsNullOrWhiteSpace(signinId)) throw new ArgumentNullException(nameof(signinId));
             
             return context.Environment.GetIdentityServerBaseUrl() + Constants.RoutePaths.Login + "?signin=" + signinId;
         }
         
         public static string GetPartialLoginResumeUrl(this IOwinContext context, string resumeId)
         {
-            if (context == null) throw new ArgumentNullException("context");
-            if (String.IsNullOrWhiteSpace(resumeId)) throw new ArgumentNullException("resumeId");
+            if (context == null) throw new ArgumentNullException(nameof(context));
+            if (String.IsNullOrWhiteSpace(resumeId)) throw new ArgumentNullException(nameof(resumeId));
             
             return context.Environment.GetIdentityServerBaseUrl() + Constants.RoutePaths.ResumeLoginFromRedirect + "?resume=" + resumeId;
         }
 
         public static string GetPermissionsPageUrl(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             return context.Environment.GetIdentityServerBaseUrl() + Constants.RoutePaths.ClientPermissions;
         }
 
         public static string GetExternalProviderLoginUrl(this IOwinContext context, string provider, string signinId)
         {
-            if (context == null) throw new ArgumentNullException("context");
-            if (String.IsNullOrWhiteSpace(provider)) throw new ArgumentNullException("provider");
-            if (String.IsNullOrWhiteSpace(signinId)) throw new ArgumentNullException("signinId");
+            if (context == null) throw new ArgumentNullException(nameof(context));
+            if (String.IsNullOrWhiteSpace(provider)) throw new ArgumentNullException(nameof(provider));
+            if (String.IsNullOrWhiteSpace(signinId)) throw new ArgumentNullException(nameof(signinId));
 
             return context.Environment.GetIdentityServerBaseUrl() + Constants.RoutePaths.LoginExternal + "?provider=" + provider + "&signin=" + signinId;
         }
 
         public static string GetIdentityServerHost(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             return context.Environment.GetIdentityServerHost();
         }
 
         public static string GetIdentityServerBasePath(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             return context.Environment.GetIdentityServerBasePath();
         }
 
         public static string GetIdentityServerBaseUrl(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             return context.Environment.GetIdentityServerBaseUrl();
         }
 
         public static string GetIdentityServerIssuerUri(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             return context.Environment.GetIdentityServerIssuerUri();
         }
 
         public static string GetIdentityServerLogoutUrl(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             return context.Environment.GetIdentityServerLogoutUrl();
         }
 
         public static string GetCurrentUserDisplayName(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             if (context.Authentication.User != null &&
                 context.Authentication.User.Identity != null)
@@ -305,14 +305,14 @@ namespace IdentityServer3.Core.Extensions
 
         public static string CreateSignInRequest(this IOwinContext context, SignInMessage message)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             return context.Environment.CreateSignInRequest(message);
         }
 
         public static bool IsFormData(this IOwinRequest request)
         {
-            if (request == null) throw new ArgumentNullException("request");
+            if (request == null) throw new ArgumentNullException(nameof(request));
 
             return request.Method == "POST" && 
                 String.Equals(request.ContentType, "application/x-www-form-urlencoded", StringComparison.OrdinalIgnoreCase);
@@ -320,7 +320,7 @@ namespace IdentityServer3.Core.Extensions
 
         public async static Task<IFormCollection> ReadRequestFormAsync(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             // hack to clear a possible cached type from Katana in environment
             context.Environment.Remove("Microsoft.Owin.Form#collection");
@@ -345,7 +345,7 @@ namespace IdentityServer3.Core.Extensions
 
         public async static Task<string> ReadBodyAsStringAsync(this IOwinRequest request)
         {
-            if (request == null) throw new ArgumentNullException("request");
+            if (request == null) throw new ArgumentNullException(nameof(request));
 
             if (!request.Body.CanSeek)
             {
@@ -370,7 +370,7 @@ namespace IdentityServer3.Core.Extensions
 
         public async static Task<string> ReadBodyAsStringAsync(this IOwinResponse response)
         {
-            if (response == null) throw new ArgumentNullException("response");
+            if (response == null) throw new ArgumentNullException(nameof(response));
 
             if (response.Body == null) return String.Empty;
             if (response.Body.CanRead == false) return "can't read response body";
@@ -398,7 +398,7 @@ namespace IdentityServer3.Core.Extensions
 
         public async static Task<NameValueCollection> ReadRequestFormAsNameValueCollectionAsync(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
             
             var form = await context.ReadRequestFormAsync();
 
@@ -418,7 +418,7 @@ namespace IdentityServer3.Core.Extensions
         const string SignOutMessageCookieIdtoRemove = "ids:SignOutMessageCookieIdtoRemove";
         public static void QueueRemovalOfSignOutMessageCookie(this IOwinContext context, string id)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
             if (id != null)
             {
                 context.Environment[SignOutMessageCookieIdtoRemove] = id;
@@ -426,8 +426,8 @@ namespace IdentityServer3.Core.Extensions
         }
         public static void ProcessRemovalOfSignOutMessageCookie(this IOwinContext context, MessageCookie<SignOutMessage> signOutMessageCookie)
         {
-            if (context == null) throw new ArgumentNullException("context");
-            if (signOutMessageCookie == null) throw new ArgumentNullException("signOutMessageCookie");
+            if (context == null) throw new ArgumentNullException(nameof(context));
+            if (signOutMessageCookie == null) throw new ArgumentNullException(nameof(signOutMessageCookie));
 
             if (context.Response.StatusCode == 200 && context.Environment.ContainsKey(SignOutMessageCookieIdtoRemove))
             {
@@ -438,17 +438,17 @@ namespace IdentityServer3.Core.Extensions
         const string QueueRenderLoggedOutPageFlag = "ids:QueueRenderLoggedOutPage";
         public static void QueueRenderLoggedOutPage(this IOwinContext context, string signOutMessageId)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
             context.Environment[QueueRenderLoggedOutPageFlag] = signOutMessageId;
         }
         public static bool ShouldRenderLoggedOutPage(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
             return context.Environment.ContainsKey(QueueRenderLoggedOutPageFlag);
         }
         public static void PrepareContextForLoggedOutPage(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             context.Request.Method = "POST";
             context.Request.ContentType = "application/x-www-form-urlencoded";
@@ -465,18 +465,18 @@ namespace IdentityServer3.Core.Extensions
         const string SuppressAntiForgeryCheck = "ids:SuppressAntiForgeryCheck";
         public static void SetSuppressAntiForgeryCheck(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
             context.Environment[SuppressAntiForgeryCheck] = true;
         }
         public static bool GetSuppressAntiForgeryCheck(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
             return context.Environment.ContainsKey(SuppressAntiForgeryCheck) && true.Equals(context.Environment[SuppressAntiForgeryCheck]);
         }
 
         public static void ClearAuthenticationCookies(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             context.Authentication.SignOut(
                 Constants.PrimaryAuthenticationType,
@@ -486,7 +486,7 @@ namespace IdentityServer3.Core.Extensions
 
         public static void SignOutOfExternalIdP(this IOwinContext context, string signOutId)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             // look for idp claim other than IdSvr
             // if present, then signout of it
@@ -514,7 +514,7 @@ namespace IdentityServer3.Core.Extensions
 
         public static async Task CallUserServiceSignOutAsync(this IOwinContext context, string clientId = null)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             var result = await context.Authentication.AuthenticateAsync(Constants.PrimaryAuthenticationType);
             if (result != null)

@@ -29,7 +29,7 @@ namespace IdentityServer3.Core.Services
 
         internal OwinEnvironmentService(IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             _environment = context.Environment;
         }
@@ -40,7 +40,7 @@ namespace IdentityServer3.Core.Services
         /// <param name="environment">The environment.</param>
         public OwinEnvironmentService(IDictionary<string, object> environment)
         {
-            if (environment == null) throw new ArgumentNullException("environment");
+            if (environment == null) throw new ArgumentNullException(nameof(environment));
 
             _environment = environment;
         }

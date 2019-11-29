@@ -33,7 +33,7 @@ namespace IdentityServer3.Core.Extensions
         /// <exception cref="System.ArgumentNullException">localization</exception>
         public static string GetMessage(this ILocalizationService localization, string id)
         {
-            if (localization == null) throw new ArgumentNullException("localization");
+            if (localization == null) throw new ArgumentNullException(nameof(localization));
 
             return localization.GetString(Constants.LocalizationCategories.Messages, id);
         }
@@ -47,7 +47,7 @@ namespace IdentityServer3.Core.Extensions
         /// <exception cref="System.ArgumentNullException">localization</exception>
         public static string GetEvent(this ILocalizationService localization, string id)
         {
-            if (localization == null) throw new ArgumentNullException("localization");
+            if (localization == null) throw new ArgumentNullException(nameof(localization));
 
             return localization.GetString(Constants.LocalizationCategories.Events, id);
         }
@@ -61,7 +61,7 @@ namespace IdentityServer3.Core.Extensions
         /// <exception cref="System.ArgumentNullException">localization</exception>
         public static string GetScopeDisplayName(this ILocalizationService localization, string scope)
         {
-            if (localization == null) throw new ArgumentNullException("localization");
+            if (localization == null) throw new ArgumentNullException(nameof(localization));
             
             return localization.GetString(Constants.LocalizationCategories.Scopes, scope + Constants.ScopeDisplayNameSuffix);
         }
@@ -75,7 +75,7 @@ namespace IdentityServer3.Core.Extensions
         /// <exception cref="System.ArgumentNullException">localization</exception>
         public static string GetScopeDescription(this ILocalizationService localization, string scope)
         {
-            if (localization == null) throw new ArgumentNullException("localization");
+            if (localization == null) throw new ArgumentNullException(nameof(localization));
             
             return localization.GetString(Constants.LocalizationCategories.Scopes, scope + Constants.ScopeDescriptionSuffix);
         }

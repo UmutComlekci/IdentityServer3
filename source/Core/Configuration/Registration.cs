@@ -157,7 +157,7 @@ namespace IdentityServer3.Core.Configuration
         /// <exception cref="System.ArgumentNullException">type</exception>
         public Registration(Type type, string name = null)
         {
-            if (type == null) throw new ArgumentNullException("type");
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
             this.Type = type;
             this.Name = name;
@@ -171,7 +171,7 @@ namespace IdentityServer3.Core.Configuration
         /// <exception cref="System.ArgumentNullException">factory</exception>
         public Registration(Func<IDependencyResolver, T> factory, string name = null)
         {
-            if (factory == null) throw new ArgumentNullException("factory");
+            if (factory == null) throw new ArgumentNullException(nameof(factory));
 
             this.Factory = factory;
             this.Name = name;
@@ -204,8 +204,8 @@ namespace IdentityServer3.Core.Configuration
         /// </exception>
         public Registration(Registration<T> registration, string name)
         {
-            if (registration == null) throw new ArgumentNullException("registration");
-            if (name == null) throw new ArgumentNullException("name");
+            if (registration == null) throw new ArgumentNullException(nameof(registration));
+            if (name == null) throw new ArgumentNullException(nameof(name));
 
             this.Mode = registration.Mode;
             this.Type = registration.Type;

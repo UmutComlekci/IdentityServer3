@@ -36,8 +36,8 @@ namespace IdentityServer3.Core.Results
 
         public LoginResult(IDictionary<string, object> env, SignInMessage message)
         {
-            if (env == null) throw new ArgumentNullException("env");
-            if (message == null) throw new ArgumentNullException("message");
+            if (env == null) throw new ArgumentNullException(nameof(env));
+            if (message == null) throw new ArgumentNullException(nameof(message));
 
             this.env = env;
             this.message = message;

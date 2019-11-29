@@ -27,7 +27,7 @@ namespace IdentityServer3.Core.Extensions
     {
         internal static async Task<IEnumerable<string>> GetIdentityProviderRestrictionsAsync(this IClientStore store, string clientId)
         {
-            if (store == null) throw new ArgumentNullException("store");
+            if (store == null) throw new ArgumentNullException(nameof(store));
 
             if (clientId.IsPresent())
             {
@@ -57,7 +57,7 @@ namespace IdentityServer3.Core.Extensions
 
         internal static async Task<string> GetClientName(this IClientStore store, SignOutMessage signOutMessage)
         {
-            if (store == null) throw new ArgumentNullException("store");
+            if (store == null) throw new ArgumentNullException(nameof(store));
 
             if (signOutMessage != null && signOutMessage.ClientId.IsPresent())
             {

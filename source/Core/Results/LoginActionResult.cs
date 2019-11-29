@@ -26,9 +26,9 @@ namespace IdentityServer3.Core.Results
         public LoginActionResult(IViewService viewSvc, LoginViewModel model, SignInMessage message)
             : base(async () => await viewSvc.Login(model, message))
         {
-            if (viewSvc == null) throw new ArgumentNullException("viewSvc");
-            if (model == null) throw new ArgumentNullException("model");
-            if (message == null) throw new ArgumentNullException("message");
+            if (viewSvc == null) throw new ArgumentNullException(nameof(viewSvc));
+            if (model == null) throw new ArgumentNullException(nameof(model));
+            if (message == null) throw new ArgumentNullException(nameof(message));
         }
     }
 

@@ -33,7 +33,7 @@ namespace IdentityServer3.Core.Results
 
         public WelcomeActionResult(IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             this.context = context;
         }

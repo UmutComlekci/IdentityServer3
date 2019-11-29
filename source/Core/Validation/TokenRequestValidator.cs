@@ -71,12 +71,12 @@ namespace IdentityServer3.Core.Validation
 
             if (client == null)
             {
-                throw new ArgumentNullException("client");
+                throw new ArgumentNullException(nameof(client));
             }
 
             if (parameters == null)
             {
-                throw new ArgumentNullException("parameters");
+                throw new ArgumentNullException(nameof(parameters));
             }
 
             _validatedRequest.Raw = parameters;

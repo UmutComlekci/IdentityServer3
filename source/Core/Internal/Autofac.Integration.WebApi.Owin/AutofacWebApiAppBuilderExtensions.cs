@@ -50,7 +50,7 @@ namespace Owin
         [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
         public static IAppBuilder UseAutofacWebApi(this IAppBuilder app, HttpConfiguration configuration)
         {
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
             if (!configuration.MessageHandlers.OfType<DependencyScopeHandler>().Any())
                 configuration.MessageHandlers.Insert(0, new DependencyScopeHandler());

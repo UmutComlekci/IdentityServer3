@@ -40,8 +40,8 @@ namespace IdentityServer3.Core.Configuration.Hosting
 
         internal LastUserNameCookie(IOwinContext ctx, IdentityServerOptions options)
         {
-            if (ctx == null) throw new ArgumentNullException("ctx");
-            if (options == null) throw new ArgumentNullException("options");
+            if (ctx == null) throw new ArgumentNullException(nameof(ctx));
+            if (options == null) throw new ArgumentNullException(nameof(options));
             
             this.ctx = ctx;
             this.options = options;

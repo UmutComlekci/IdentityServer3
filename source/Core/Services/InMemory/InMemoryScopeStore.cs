@@ -46,7 +46,7 @@ namespace IdentityServer3.Core.Services.InMemory
         /// </returns>
         public Task<IEnumerable<Scope>> FindScopesAsync(IEnumerable<string> scopeNames)
         {
-            if (scopeNames == null) throw new ArgumentNullException("scopeNames");
+            if (scopeNames == null) throw new ArgumentNullException(nameof(scopeNames));
             
             var scopes = from s in _scopes
                          where scopeNames.ToList().Contains(s.Name)

@@ -26,9 +26,9 @@ namespace IdentityServer3.Core.Results
         public ClientPermissionsActionResult(IViewService viewSvc, IDictionary<string, object> env, ClientPermissionsViewModel model)
             : base(async () => await viewSvc.ClientPermissions(model))
         {
-            if (viewSvc == null) throw new ArgumentNullException("viewSvc");
-            if (env == null) throw new ArgumentNullException("env");
-            if (model == null) throw new ArgumentNullException("model");
+            if (viewSvc == null) throw new ArgumentNullException(nameof(viewSvc));
+            if (env == null) throw new ArgumentNullException(nameof(env));
+            if (model == null) throw new ArgumentNullException(nameof(model));
         }
     }
 }

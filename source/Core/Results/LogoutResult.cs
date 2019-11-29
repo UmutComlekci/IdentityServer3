@@ -47,8 +47,8 @@ namespace IdentityServer3.Core.Results
 
         public LogoutResult(SignOutMessage message, IDictionary<string, object> env, IdentityServerOptions options)
         {
-            if (env == null) throw new ArgumentNullException("env");
-            if (options == null) throw new ArgumentNullException("options");
+            if (env == null) throw new ArgumentNullException(nameof(env));
+            if (options == null) throw new ArgumentNullException(nameof(options));
 
             this.env = env;
             this.options = options;

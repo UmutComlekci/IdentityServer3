@@ -47,8 +47,8 @@ namespace IdentityServer3.Core.Configuration.Hosting
 
         internal MessageCookie(IDictionary<string, object> env, IdentityServerOptions options)
         {
-            if (env == null) throw new ArgumentNullException("env");
-            if (options == null) throw new ArgumentNullException("options");
+            if (env == null) throw new ArgumentNullException(nameof(env));
+            if (options == null) throw new ArgumentNullException(nameof(options));
 
             this.ctx = new OwinContext(env);
             this.options = options;
@@ -56,8 +56,8 @@ namespace IdentityServer3.Core.Configuration.Hosting
 
         internal MessageCookie(IOwinContext ctx, IdentityServerOptions options)
         {
-            if (ctx == null) throw new ArgumentNullException("ctx");
-            if (options == null) throw new ArgumentNullException("options");
+            if (ctx == null) throw new ArgumentNullException(nameof(ctx));
+            if (options == null) throw new ArgumentNullException(nameof(options));
             
             this.ctx = ctx;
             this.options = options;
@@ -113,14 +113,14 @@ namespace IdentityServer3.Core.Configuration.Hosting
 
         private string Protect(TMessage message)
         {
-            if (message == null) throw new ArgumentNullException("message");
+            if (message == null) throw new ArgumentNullException(nameof(message));
 
             return Protect(options.DataProtector, message);
         }
 
         private TMessage Unprotect(string data)
         {
-            if (data == null) throw new ArgumentNullException("data");
+            if (data == null) throw new ArgumentNullException(nameof(data));
             
             return Unprotect(data, options.DataProtector);
         }
@@ -139,7 +139,7 @@ namespace IdentityServer3.Core.Configuration.Hosting
         {
             ClearOverflow();
 
-            if (message == null) throw new ArgumentNullException("message");
+            if (message == null) throw new ArgumentNullException(nameof(message));
 
             var id = CryptoRandom.CreateUniqueId();
             var name = GetCookieName(id);

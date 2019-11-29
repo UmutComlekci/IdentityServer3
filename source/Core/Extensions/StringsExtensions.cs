@@ -159,7 +159,7 @@ namespace IdentityServer3.Core.Extensions
 
         public static Stream ToStream(this string s)
         {
-            if (s == null) throw new ArgumentNullException("s");
+            if (s == null) throw new ArgumentNullException(nameof(s));
 
             var ms = new MemoryStream();
             var sw = new StreamWriter(ms);

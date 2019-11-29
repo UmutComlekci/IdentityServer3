@@ -61,8 +61,8 @@ namespace IdentityServer3.Core.Services.Default
 
         public KeyHashingTransientDataRepository(string hashName, ITransientDataRepository<T> inner)
         {
-            if (String.IsNullOrWhiteSpace(hashName)) throw new ArgumentNullException("hashName");
-            if (inner == null) throw new ArgumentNullException("inner");
+            if (String.IsNullOrWhiteSpace(hashName)) throw new ArgumentNullException(nameof(hashName));
+            if (inner == null) throw new ArgumentNullException(nameof(inner));
 
             this.hashName = hashName;
             this.inner = inner;
@@ -70,7 +70,7 @@ namespace IdentityServer3.Core.Services.Default
 
         protected string Hash(string value)
         {
-            if (String.IsNullOrWhiteSpace(value)) throw new ArgumentNullException("value");
+            if (String.IsNullOrWhiteSpace(value)) throw new ArgumentNullException(nameof(value));
 
             using (var hash = HashAlgorithm.Create(hashName))
             {

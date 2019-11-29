@@ -42,7 +42,7 @@ namespace Autofac.Integration.Owin
         [SecuritySafeCritical]
         public static ILifetimeScope GetAutofacLifetimeScope(this IOwinContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             return context.Get<ILifetimeScope>(Constants.OwinLifetimeScopeKey);
         }

@@ -59,13 +59,13 @@ namespace IdentityServer3.Core.Models
         /// <exception cref="System.ArgumentNullException">errorMessage</exception>
         public AuthenticateResult(string errorMessage)
         {
-            if (errorMessage.IsMissing()) throw new ArgumentNullException("errorMessage");
+            if (errorMessage.IsMissing()) throw new ArgumentNullException(nameof(errorMessage));
             ErrorMessage = errorMessage;
         }
         
         internal AuthenticateResult(ClaimsPrincipal user)
         {
-            if (user == null) throw new ArgumentNullException("user");
+            if (user == null) throw new ArgumentNullException(nameof(user));
             this.User = IdentityServerPrincipal.CreateFromPrincipal(user, Constants.PrimaryAuthenticationType);
         }
 
@@ -76,9 +76,9 @@ namespace IdentityServer3.Core.Models
             string authenticationType = Constants.PrimaryAuthenticationType
         )
         {
-            if (String.IsNullOrWhiteSpace(subject)) throw new ArgumentNullException("subject");
-            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException("name");
-            if (String.IsNullOrWhiteSpace(identityProvider)) throw new ArgumentNullException("identityProvider");
+            if (String.IsNullOrWhiteSpace(subject)) throw new ArgumentNullException(nameof(subject));
+            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
+            if (String.IsNullOrWhiteSpace(identityProvider)) throw new ArgumentNullException(nameof(identityProvider));
 
             if (String.IsNullOrWhiteSpace(authenticationMethod))
             {
@@ -153,7 +153,7 @@ namespace IdentityServer3.Core.Models
             string authenticationMethod = null
         )
         {
-            if (redirectPath.IsMissing()) throw new ArgumentNullException("redirectPath");
+            if (redirectPath.IsMissing()) throw new ArgumentNullException(nameof(redirectPath));
             if (!redirectPath.StartsWith("~/") && !redirectPath.StartsWith("/"))
             {
                 throw new ArgumentException("redirectPath must start with / or ~/");
@@ -183,12 +183,12 @@ namespace IdentityServer3.Core.Models
         /// <exception cref="System.ArgumentException">redirectPath must start with / or ~/</exception>
         public AuthenticateResult(string redirectPath, ExternalIdentity externalId)
         {
-            if (redirectPath.IsMissing()) throw new ArgumentNullException("redirectPath");
+            if (redirectPath.IsMissing()) throw new ArgumentNullException(nameof(redirectPath));
             if (!redirectPath.StartsWith("~/") && !redirectPath.StartsWith("/"))
             {
                 throw new ArgumentException("redirectPath must start with / or ~/");
             }
-            if (externalId == null) throw new ArgumentNullException("externalId");
+            if (externalId == null) throw new ArgumentNullException(nameof(externalId));
 
             this.PartialSignInRedirectPath = redirectPath;
 
@@ -212,7 +212,7 @@ namespace IdentityServer3.Core.Models
         /// <exception cref="System.ArgumentException">redirectPath must start with / or ~/</exception>
         public AuthenticateResult(string redirectPath, IEnumerable<Claim> claims)
         {
-            if (redirectPath.IsMissing()) throw new ArgumentNullException("redirectPath");
+            if (redirectPath.IsMissing()) throw new ArgumentNullException(nameof(redirectPath));
             if (!redirectPath.StartsWith("~/") && !redirectPath.StartsWith("/"))
             {
                 throw new ArgumentException("redirectPath must start with / or ~/");

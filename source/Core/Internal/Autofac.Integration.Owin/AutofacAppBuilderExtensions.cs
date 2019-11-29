@@ -54,7 +54,7 @@ namespace Owin
         [SecuritySafeCritical]
         public static IAppBuilder UseAutofacMiddleware(this IAppBuilder app, ILifetimeScope container)
         {
-            if (app == null) throw new ArgumentNullException("app");
+            if (app == null) throw new ArgumentNullException(nameof(app));
 
             // idsvr : remove these guards so that multiple copies of middleware can be registered
             //if (app.Properties.ContainsKey(MiddlewareRegisteredKey)) return app;

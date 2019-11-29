@@ -31,8 +31,8 @@ namespace IdentityServer3.Core.Services.Default
             Func<string, Task<IEnumerable<ITokenMetadata>>> get, 
             Func<string, string, Task> delete)
         {
-            if (get == null) throw new ArgumentNullException("get");
-            if (delete == null) throw new ArgumentNullException("delete");
+            if (get == null) throw new ArgumentNullException(nameof(get));
+            if (delete == null) throw new ArgumentNullException(nameof(delete));
 
             this.get = get;
             this.delete = delete;

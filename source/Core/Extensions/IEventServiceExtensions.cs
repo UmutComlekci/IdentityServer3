@@ -660,7 +660,7 @@ namespace IdentityServer3.Core.Extensions
 
         private static async Task RaiseEventAsync<T>(this IEventService events, Event<T> evt)
         {
-            if (events == null) throw new ArgumentNullException("events");
+            if (events == null) throw new ArgumentNullException(nameof(events));
 
             await events.RaiseAsync(evt);
         }

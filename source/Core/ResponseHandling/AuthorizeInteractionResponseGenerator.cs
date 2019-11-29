@@ -233,7 +233,7 @@ namespace IdentityServer3.Core.ResponseHandling
 
         public async Task<ConsentInteractionResponse> ProcessConsentAsync(ValidatedAuthorizeRequest request, UserConsent consent = null)
         {
-            if (request == null) throw new ArgumentNullException("request");
+            if (request == null) throw new ArgumentNullException(nameof(request));
 
             if (request.PromptMode != null && 
                 request.PromptMode != Constants.PromptModes.None &&
